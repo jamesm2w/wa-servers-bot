@@ -43,7 +43,6 @@ setTimeout(()=>{
     if (status == 200) {
       latestData = result;
     }
-    latestDiscordStatus = [];
     for (var i = 0; i < servers.length; i++){
       latestDiscordStatus[i] = getPresence(latestData[servers[i]]);
     }
