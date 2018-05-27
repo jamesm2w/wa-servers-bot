@@ -46,14 +46,25 @@ setTimeout(()=>{
   });
 }, 56000);
 
+var servers = Object.keys(latestData);
+
 var getPresence = (server) => {
-  
+  let serverStatus = latestData[server], discordStatus;
+  switch (serverStatus.status) {
+    case "up":
+      discordStatus = "online";
+    case "maintenance":
+      discordStatus = "dnd";
+  }
+  return {"game": {"name": "on " + serverStatus.name + " | " + serverStatus.status + " | " + serverStatus.population, "type": "PLAYING"}, "status": "online"}
 };
 
 client.on('ready', () => {
   console.log("Logged in");
   client.user.setPresence({"game": {"name": "the servers", "type": "PLAYING"}, "status": "online"});
 });
+
+
 
 client.on('message', msg => {
   if (msg.content === 'ping') {
