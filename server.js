@@ -46,9 +46,13 @@ setTimeout(()=>{
   });
 }, 56000);
 
+var getPresence = (server) => {
+  
+};
+
 client.on('ready', () => {
   console.log("Logged in");
-  client.setPresence();
+  client.user.setPresence({"game": {"name": "the servers", "type": "PLAYING"}, "status": "online"});
 });
 
 client.on('message', msg => {
