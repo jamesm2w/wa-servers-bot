@@ -1,14 +1,14 @@
 {
   "name": "wa-server-bot",
-  "version": "1",
+  "version": "0.1.2",
   "description": "Worlds Adrift Server Statuses on Discord",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.3",
-    "discord.js": "^11.3.2"
+    "discord.js": "^11.3.2",
+    "express": "^4.16.3"
   },
   "engines": {
     "node": "8.x"
