@@ -36,12 +36,16 @@ var waoptions = {
     }
 };
 
-var latestData = {}
+var latestData = {}, latestDiscordStatus = [];
 
 setTimeout(()=>{
   getJSON(waoptions, (status, result) => {
     if (status == 200) {
       latestData = result;
+    }
+    latestDiscordStatus = [];
+    for (var i = 0; i < servers.length; i++){
+      latestDiscordStatus[i] = getPresence(latestData[servers[i]]);
     }
   });
 }, 56000);
@@ -54,14 +58,20 @@ var getPresence = (server) => {
     case "up":
       discordStatus = "online";
     case "maintenance":
+      discordStatus = "idle";
+    case "down":
       discordStatus = "dnd";
   }
-  return {"game": {"name": "on " + serverStatus.name + " | " + serverStatus.status + " | " + serverStatus.population, "type": "PLAYING"}, "status": "online"}
+  return {"game": {"name": "on " + serverStatus.name + " | " + serverStatus.status + " | " + serverStatus.population, "type": "PLAYING"}, "status": discordStatus}
 };
 
 client.on('ready', () => {
   console.log("Logged in");
-  client.user.setPresence({"game": {"name": "the servers", "type": "PLAYING"}, "status": "online"});
+  let i = 0;
+  setTimeout(() => {
+    client.user.setPresence(latestDiscordStatus[i]);
+    i++;
+  }, 28000);
 });
 
 
