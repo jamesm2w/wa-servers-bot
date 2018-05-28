@@ -69,16 +69,15 @@ function updateAvatars() {
   
 }
 
-setInterval(update, 60000);
+//setInterval(update, 60000);
 
-setInterval(updateAvatars, 600000);
+//setInterval(updateAvatars, 600000);
 
-for (let [serverID, client] of Object.entries(clients)) {
-  client.login(process.env[serverID]);
-}
+//for (let [serverID, client] of Object.entries(clients)) {
+ // client.login(process.env[serverID]);
+//}
 
-app.listen(process.env.PORT);
-
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
+//
+//setInterval(() => {
+//  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+//}, 280000);
