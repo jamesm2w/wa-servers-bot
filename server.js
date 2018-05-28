@@ -6,13 +6,17 @@ const clients = {
   "eu_02": new Discord.Client(),
   "us_01": new Discord.Client(),
   "us_02": new Discord.Client(),
-  "us_03": new Discor
+  "us_03": new Discord.Client()
 }
 
 var latestStatus = {};
 
 function updateBots() {
-  
+  for (let [serverID, client] of Object.entries(clients)) {
+    client.guilds.array.forEach((el) => {
+      console.log(el);
+    });
+  }
 }
 
 setTimeout(() => {
@@ -22,19 +26,3 @@ setTimeout(() => {
   });
 },28000);
 
-tenrui_client.on("ready", () => {
-  console.log("Ten-Rui Logged in");
-});
-
-capulca_client.on('ready', () => {
-  console.log("Capulca Logged in");
-});
-
-capulca_client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
-  }
-});
-
-capulca_client.login(process.env.CAPULCA_TOKEN);
-tenrui_client.login(process.env.TENRUI_TOKEN);
