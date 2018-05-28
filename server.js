@@ -25,7 +25,6 @@ function update() {
 
 function updateBots() {
   for (let [serverID, client] of Object.entries(clients)) {
-    let status, avatarURL, report;
     if (latestStatus[serverID].status == "up") {
       client.user.setPresence({"game": {"name": "Online | " + toTitleCase(latestStatus[serverID].population) + " Population"}, "status": "online"})
         .then(user => console.log("Online presence set for " + serverID))
@@ -39,7 +38,6 @@ function updateBots() {
       .then(user => console.log("Down presence set for " + serverID))
       .catch(console.error);
     }
-    
   }
 }
 
