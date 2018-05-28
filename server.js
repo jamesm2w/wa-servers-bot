@@ -20,11 +20,6 @@ function updateBots() {
     let status, avatarURL, report;
     if (latestStatus[serverID].status == "up") {
       client.user.setPresence({"game": {"name": "Online | " + toTitleCase(latestStatus[serverID].population) + " Population"}, "status": "online"})
-      if (client.user.avatarURL != "") {
-        client.user.setAvatar("https://cdn.glitch.com/f39df7fd-58e7-4479-a67f-5e36c0639cd4%2FWALogoBigOrange.png?1527516083888")
-        .then(user => console.log("Online Avatar Set for " + serverID + " " + user.avatarURL))
-        .catch(console.error);
-      }
       
     } else if (latestStatus[serverID].status == "maintenance") {
       client.user.setPresence({"game": {"name": "Maintenance | " + toTitleCase(latestStatus[serverID].population) + " Population"}, "status": "idle"})
@@ -68,10 +63,10 @@ setTimeout(() => {
     latestStatus = data;
     updateBots();
   });
-},28000);
+}, 60000);
 
 setTimeout(() => {
-  updateAvatars();
+  updateAvatars();//
 }, 600000);
 
 for (let [serverID, client] of Object.entries(clients)) {
