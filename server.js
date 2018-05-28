@@ -1,8 +1,13 @@
 const statusHelper = require("./statusChecker.js");
 const Discord = require('discord.js');
 
-const capulca_client = new Discord.Client();
-const tenrui_client = new Discord.Client();
+const clients = {
+  "eu_01": new Discord.Client(),
+  "eu_02": new Discord.Client(),
+  "us_01": new Discord.Client(),
+  "us_02": new Discord.Client(),
+  "us_03": new Discor
+}
 
 var latestStatus = {};
 
