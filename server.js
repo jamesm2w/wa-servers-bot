@@ -38,23 +38,17 @@ function updateBots() {
 function updateAvatars() {
   for (let [serverID, client] of Object.entries(clients)) {
     if (latestStatus[serverID].status == "up") {
-      if (client.user.avatarURL != "") {
-        client.user.setAvatar("https://cdn.discordapp.com/avatars/450658123766562817/510dfa8d4b12135466e2343570fabd93.png?size=2048")
-        .then(user => console.log("Online Avatar Set for " + serverID + " " + user.avatarURL))
-        .catch(console.error);
-      }
+      client.user.setAvatar("https://cdn.discordapp.com/avatars/450658123766562817/510dfa8d4b12135466e2343570fabd93.png?size=2048")
+      .then(user => console.log("Online Avatar Set for " + serverID + " " + user.avatarURL))
+      .catch(console.error);
     } else if (latestStatus[serverID].status == "maintenance") {
-      if (client.user.avatarURL != "") {
-        client.user.setAvatar("https://cdn.discordapp.com/avatars/450658123766562817/510dfa8d4b12135466e2343570fabd93.png?size=2048")
-        .then(user => console.log("Maintenance Avatar Set for " + serverID + " " + user.avatarURL))
-        .catch(console.error);
-      }
+      client.user.setAvatar("https://cdn.discordapp.com/avatars/450658123766562817/510dfa8d4b12135466e2343570fabd93.png?size=2048")
+      .then(user => console.log("Maintenance Avatar Set for " + serverID + " " + user.avatarURL))
+      .catch(console.error);
     } else if (latestStatus[serverID].status == "down") {
-      if (client.user.avatarURL != "") {
-        client.user.setAvatar("https://cdn.discordapp.com/avatars/450658123766562817/510dfa8d4b12135466e2343570fabd93.png?size=2048")
-        .then(user => console.log("Down Avatar Set for " + serverID + " " + user.avatarURL))
-        .catch(console.error);
-      }
+      client.user.setAvatar("https://cdn.discordapp.com/avatars/450658123766562817/510dfa8d4b12135466e2343570fabd93.png?size=2048")
+      .then(user => console.log("Down Avatar Set for " + serverID + " " + user.avatarURL))
+      .catch(console.error);
     }
     
   }
