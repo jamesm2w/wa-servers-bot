@@ -1,5 +1,13 @@
 const statusHelper = require("./statusChecker.js");
 const Discord = require('discord.js');
+const http = require("http");
+const express = require('express');
+const app = express();
+
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
+});
 
 const clients = {
   "eu_01": new Discord.Client(),
@@ -61,10 +69,16 @@ function updateAvatars() {
   
 }
 
-setTimeout(update, 60000);
+setInterval(update, 60000);
 
-setTimeout(updateAvatars, 600000);
+setInterval(updateAvatars, 600000);
 
 for (let [serverID, client] of Object.entries(clients)) {
   client.login(process.env[serverID]);
 }
+
+app.listen(process.env.PORT);
+
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
