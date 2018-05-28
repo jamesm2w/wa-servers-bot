@@ -20,13 +20,16 @@ function updateBots() {
     let status, avatarURL, report;
     if (latestStatus[serverID].status == "up") {
       client.user.setPresence({"game": {"name": "Online | " + toTitleCase(latestStatus[serverID].population) + " Population"}, "status": "online"})
-      
+        .then(user => console.log("Online presence set for " + serverID))
+        .catch(console.error);
     } else if (latestStatus[serverID].status == "maintenance") {
       client.user.setPresence({"game": {"name": "Maintenance | " + toTitleCase(latestStatus[serverID].population) + " Population"}, "status": "idle"})
-      
+      .then(user => console.log("Maintenance presence set for " + serverID))
+      .catch(console.error);
     } else if (latestStatus[serverID].status == "down") {
       client.user.setPresence({"game": {"name": "Down | " + toTitleCase(latestStatus[serverID].population) + " Population"}, "status": "dnd"})
-      
+      .then(user => console.log("Down presence set for " + serverID))
+      .catch(console.error);
     }
     
   }
@@ -59,6 +62,7 @@ function updateAvatars() {
 }
 
 setTimeout(() => {
+  console.log("Updating Data");
   statusHelper.getServersStatus((data) => {
     latestStatus = data;
     updateBots();
