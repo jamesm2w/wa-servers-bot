@@ -20,6 +20,11 @@ function updateBots() {
     let status, avatarURL, report;
     if (latestStatus[serverID].status == "up") {
       client.user.setPresence({"game": {"name": "Online | " + toTitleCase(latestStatus[serverID].population) + " Population"}, "status": "online"})
+      if (client.user.avatarURL != "") {
+        client.user.setAvatar("https://cdn.glitch.com/f39df7fd-58e7-4479-a67f-5e36c0639cd4%2FWALogoBigOrange.png?1527516083888")
+        .then(user => console.log("Online Avatar Set for " + serverID + " " + user.avatarURL))
+        .catch(console.error);
+      }
       
     } else if (latestStatus[serverID].status == "maintenance") {
       client.user.setPresence({"game": {"name": "Maintenance | " + toTitleCase(latestStatus[serverID].population) + " Population"}, "status": "idle"})
@@ -32,12 +37,42 @@ function updateBots() {
   }
 }
 
+function updateAvatars() {
+  for (let [serverID, client] of Object.entries(clients)) {
+    if (latestStatus[serverID].status == "up") {
+      if (client.user.avatarURL != "") {
+        client.user.setAvatar("https://cdn.discordapp.com/avatars/450658123766562817/510dfa8d4b12135466e2343570fabd93.png?size=2048")
+        .then(user => console.log("Online Avatar Set for " + serverID + " " + user.avatarURL))
+        .catch(console.error);
+      }
+    } else if (latestStatus[serverID].status == "maintenance") {
+      if (client.user.avatarURL != "") {
+        client.user.setAvatar("https://cdn.discordapp.com/avatars/450658123766562817/510dfa8d4b12135466e2343570fabd93.png?size=2048")
+        .then(user => console.log("Maintenance Avatar Set for " + serverID + " " + user.avatarURL))
+        .catch(console.error);
+      }
+    } else if (latestStatus[serverID].status == "down") {
+      if (client.user.avatarURL != "") {
+        client.user.setAvatar("https://cdn.discordapp.com/avatars/450658123766562817/510dfa8d4b12135466e2343570fabd93.png?size=2048")
+        .then(user => console.log("Down Avatar Set for " + serverID + " " + user.avatarURL))
+        .catch(console.error);
+      }
+    }
+    
+  }
+  
+}
+
 setTimeout(() => {
   statusHelper.getServersStatus((data) => {
     latestStatus = data;
     updateBots();
   });
 },28000);
+
+setTimeout(() => {
+  updateAvatars();
+}, 600000);
 
 for (let [serverID, client] of Object.entries(clients)) {
   client.login(process.env[serverID]);
