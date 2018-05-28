@@ -13,7 +13,7 @@ var latestStatus = {};
 
 function updateBots() {
   for (let [serverID, client] of Object.entries(clients)) {
-    console.log(client.guilds);
+    client.user.setPresence({"game": "", {}})
   }
 }
 
