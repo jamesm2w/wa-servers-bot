@@ -13,9 +13,7 @@ var latestStatus = {};
 
 function updateBots() {
   for (let [serverID, client] of Object.entries(clients)) {
-    client.guilds.array.forEach((el) => {
-      console.log(el);
-    });
+    console.log(client.guilds);
   }
 }
 
@@ -26,3 +24,6 @@ setTimeout(() => {
   });
 },28000);
 
+for (let [serverID, client] of Object.entries(clients)) {
+  client.login(process.env[serverID]);
+}
