@@ -15,6 +15,14 @@ function toTitleCase(str){
 
 var latestStatus = {};
 
+function update() {
+  console.log("Updating Data");
+  statusHelper.getServersStatus((data) => {
+    latestStatus = data;
+    updateBots();
+  });
+}
+
 function updateBots() {
   for (let [serverID, client] of Object.entries(clients)) {
     let status, avatarURL, report;
@@ -55,17 +63,9 @@ function updateAvatars() {
   
 }
 
-setTimeout(() => {
-  console.log("Updating Data");
-  statusHelper.getServersStatus((data) => {
-    latestStatus = data;
-    updateBots();
-  });
-}, 60000);
+setTimeout(update, 60000);
 
-setTimeout(() => {
-  updateAvatars();//
-}, 600000);
+setTimeout(updateAvatars, 600000);
 
 for (let [serverID, client] of Object.entries(clients)) {
   client.login(process.env[serverID]);
