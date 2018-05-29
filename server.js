@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 client.on("message", message => {
   if (message.content.startsWith("!windwall")) {
-    message.channel
+    message.channel.send("Hello World").then(message => {console.log("[INFO] !windwall reply sent")}).error(console.error)
   }
 });
 
