@@ -1,0 +1,58 @@
+const http = require("http");
+const https = require("https");
+const fs = require('fs');
+
+var exports = module.exports = {};
+
+var getJSON = function(options, onResult) {
+    console.log("getjson called");
+    var prot = options.port == 443 ? https : http;
+    var req = prot.request(options, function(res)
+    {
+        var output = '';
+        console.log(options.host + ':' + res.statusCode);
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            output += chunk;
+        });
+        res.on('end', function() {
+            var obj = JSON.parse(output);
+            onResult(res.statusCode, obj);
+        });
+    });
+    req.on('error', function(err) {
+        //res.send('error: ' + err.message);
+        throw err;
+    });
+    req.end();
+};
+
+var waoptions = {
+    host: 'worldsadrift.api.bossagames.com',
+    port: 80,
+    path: "/deploymentStatus",
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+};
+exports.apicheck = function (onfinish) {
+  getJSON(waoptions, function(status, data){
+      
+      let content = {
+        "us_01": [data.us_01.status, data.us_01.population, data.us_01.name],
+        "eu_01": [data.eu_01.status, data.eu_01.population, data.eu_01.name],
+        "us_02": [data.us_02.status, data.us_02.population, data.us_02.name],
+        "eu_02": [data.eu_02.status, data.eu_02.population, data.eu_02.name],
+        "us_03": [data.us_03.status, data.us_03.population, data.us_03.name]
+      }
+      
+      content = JSON.stringify(content);
+
+      //fs.writeFile(__dirname + "/latestapi.json", content, 'utf8', function (err) {
+      //    if (err) {console.log(err);}
+      //    console.log("[API] File Updated");
+      //}); 
+      onfinish(content);
+    });
+}
