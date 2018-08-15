@@ -36,6 +36,16 @@ var waoptions = {
         'Content-Type': 'application/json'
     }
 };
+
+var ptsoptions = {
+  host: 'worldsadrift-staging.api.bossagames.com',
+  port: 80,
+  path: "/deploymentStatus",
+  method: 'GET',
+  headers: {
+      'Content-Type': 'application/json'
+  }
+}
 exports.apicheck = function (onfinish) {
   getJSON(waoptions, function(status, data){
       
@@ -55,4 +65,13 @@ exports.apicheck = function (onfinish) {
       //}); 
       onfinish(content);
     });
+}
+
+exports.ptscheck = function (onfinish) {
+  getJSON(ptsoptions, function (status, data) {
+    let content = [data.pts.status, data.pts.population, data.pts.name];
+    
+    content = JSON.stringify(content);
+    onfinish(content);
+  });
 }

@@ -10,7 +10,8 @@ const clients = {
   "eu_02": new Discord.Client(),
   "us_01": new Discord.Client(),
   "us_02": new Discord.Client(),
-  "us_03": new Discord.Client()
+  "us_03": new Discord.Client(),
+  "pts": new Discord.Client()
 }
 
 var toTitleCase = str => {
@@ -63,7 +64,11 @@ function update() {
   console.log("[INFO] [*] Updating Data");
   api.apicheck(data => {
     latestStatus = JSON.parse(data);
-    updateBots();
+    api.ptscheck(data => {
+      latestStatus.pts = data;
+      
+      updateBots();
+    });
   });
 }
 
