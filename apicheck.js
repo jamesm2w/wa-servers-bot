@@ -71,7 +71,7 @@ exports.ptscheck = function (onfinish) {
   getJSON(ptsoptions, function (status, data) {
     let content = [data.pts.status, data.pts.population, data.pts.name];
     
-    content = JSON.stringify(content);
+    //content = JSON.stringify(content);
     onfinish(content);
   });
 }
