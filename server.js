@@ -31,7 +31,7 @@ var updateBots = () => {
       .then(user => console.log("[INFO] [" + serverID +"] Set to Maintenance, " + latestStatus[serverID][1]))
       .catch(err => console.log(err));
     } else if (latestStatus[serverID][0] == "down") {
-      client.user.setPresence({"game": {"name": "Down | " + toTitleCase(latestStatus[serverID][1]) + " Population"}, "status": "dnd"})
+      client.user.setPresence({"game": {"name": "Down | " + latestStatus[serverID][1]}, "status": "dnd"})
       .then(user => console.log("[INFO] [" + serverID +"] Set to Down, " + latestStatus[serverID][1]))
       .catch(err => console.log(err));
     }
@@ -65,7 +65,7 @@ function update() {
   api.apicheck(data => {
     latestStatus = JSON.parse(data);
     api.ptscheck(data => {
-      latestStatus.pts = data;
+      latestStatus.pts = ["down", "no"];
       
       updateBots();
     });
