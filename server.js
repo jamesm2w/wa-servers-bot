@@ -65,7 +65,7 @@ function update() {
   api.apicheck(data => {
     latestStatus = JSON.parse(data);
     api.ptscheck(data => {
-      latestStatus.pts = ["down", "no"];
+      latestStatus.pts = ["down", "Awaiting Update 27"];
       
       updateBots();
     });
@@ -91,6 +91,10 @@ for (let [serverID, client] of Object.entries(clients)) {
 
 app.get("/", (req, res) => {
   res.status(200).send("OK");
+});
+
+app.get("/deploymentStatus", (req, res) => {
+  res.send(`{"pts":{"server":"pts","status":"down","name":"PTS","population":"none"}}`);
 });
 
 var listener = app.listen(process.env.PORT, () => {
