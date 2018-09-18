@@ -65,7 +65,7 @@ function update() {
   api.apicheck(data => {
     latestStatus = JSON.parse(data);
     api.ptscheck(data => {
-      latestStatus.pts = ["down", "Awaiting Update 27"];
+      latestStatus.pts = data;
       
       updateBots();
     });
