@@ -20,6 +20,7 @@ var toTitleCase = str => {
 
 var updateBots = () => {
   for (let [serverID, client] of Object.entries(clients)) {
+    console.log(serverID, client);
     console.log("[INFO] [API] " + serverID +" is " + JSON.stringify(latestStatus[serverID]));
     console.log("[DEBUG] Updating presence");
     if (latestStatus[serverID][0] == "up") {
