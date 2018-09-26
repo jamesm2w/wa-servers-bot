@@ -5,7 +5,7 @@ const Discord = require("discord.js");
 //const Updater = require(__dirname + "/updatefiles.js");
 const api = require(__dirname + "/apicheck.js");
 
-const clients = {
+var clients = {
   "eu_01": new Discord.Client(),
   "eu_02": new Discord.Client(),
   "us_01": new Discord.Client(),
@@ -20,7 +20,6 @@ var toTitleCase = str => {
 
 var updateBots = () => {
   for (let [serverID, client] of Object.entries(clients)) {
-    console.log(serverID, client);
     console.log("[INFO] [API] " + serverID +" is " + JSON.stringify(latestStatus[serverID]));
     console.log("[DEBUG] Updating presence");
     if (latestStatus[serverID][0] == "up") {
