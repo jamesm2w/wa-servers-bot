@@ -11,6 +11,8 @@ var clients = {
   "us_01": new Discord.Client(),
   "us_02": new Discord.Client(),
   "us_03": new Discord.Client(),
+  "kubo": new Discord.Client(),
+  "driss": new Discord.Client(),
   "pts": new Discord.Client()
 }
 
