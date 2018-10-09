@@ -54,7 +54,9 @@ exports.apicheck = function (onfinish) {
         "eu_01": ["down", "dead", data.eu_01.name],
         "us_02": ["down", "dead", data.us_02.name],
         "eu_02": ["down", "dead", data.eu_02.name],
-        "us_03": ["down", "dead", data.us_03.name]
+        "us_03": ["down", "dead", data.us_03.name],
+        "driss": ["down", "awaiting launch", "Driss"],
+        "kubo": ["down", "awaiting launch", "Kubo"]
       }
       
       content = JSON.stringify(content);
@@ -69,8 +71,8 @@ exports.apicheck = function (onfinish) {
 
 exports.ptscheck = function (onfinish) {
   getJSON(ptsoptions, function (status, data) {
-    let content = [data.pts.status, data.pts.population, data.pts.name];
-    
+    //let content = [data.pts.status, data.pts.population, data.pts.name];
+    let content = ["down", "Awaiting Update 28", "PTS"]
     //content = JSON.stringify(content);
     onfinish(content);
   });

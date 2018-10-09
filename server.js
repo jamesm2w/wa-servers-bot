@@ -76,8 +76,8 @@ function update() {
 
 var i = 1;
 var whenReady = () => {
-  if (i > 1) {return false;}
-  update();
+  if (i < 5) {return false;}
+  update()
   setInterval(update, 60000);
   setInterval(updateAvatars, 600000);
   i++;
