@@ -50,13 +50,8 @@ exports.apicheck = function (onfinish) {
   getJSON(waoptions, function(status, data){
       
       let content = {
-        "us_01": ["down", "dead", data.us_01.name],
-        "eu_01": ["down", "dead", data.eu_01.name],
-        "us_02": ["down", "dead", data.us_02.name],
-        "eu_02": ["down", "dead", data.eu_02.name],
-        "us_03": ["down", "dead", data.us_03.name],
-        "driss": ["down", "awaiting launch", "Driss"],
-        "kubo": ["down", "awaiting launch", "Kubo"]
+        "us_pvp_01": ["down", "awaiting launch", "Driss-PvP"],
+        "us_pve_01": ["down", "awaiting launch", "Kubo-PvE"]
       }
       
       content = JSON.stringify(content);

@@ -6,13 +6,8 @@ const Discord = require("discord.js");
 const api = require(__dirname + "/apicheck.js");
 
 var clients = {
-  "eu_01": new Discord.Client(),
-  "eu_02": new Discord.Client(),
-  "us_01": new Discord.Client(),
-  "us_02": new Discord.Client(),
-  "us_03": new Discord.Client(),
-  "kubo": new Discord.Client(),
-  "driss": new Discord.Client(),
+  "us_pvp_01": new Discord.Client(),
+  "us_pve_01": new Discord.Client(),
   "pts": new Discord.Client()
 }
 
@@ -74,9 +69,9 @@ function update() {
   });
 }
 
-var i = 3;
+var i = 1;
 var whenReady = () => {
-  if (i < 2) {return false;}
+  if (i > 1) {return false;}
   update()
   setInterval(update, 60000);
   setInterval(updateAvatars, 600000);
