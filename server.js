@@ -11,8 +11,8 @@ var clients = {
   "us_01": new Discord.Client(),
   "us_02": new Discord.Client(),
   "us_03": new Discord.Client(),
-  //"kubo": new Discord.Client(),
-  //"driss": new Discord.Client(),
+  "kubo": new Discord.Client(),
+  "driss": new Discord.Client(),
   "pts": new Discord.Client()
 }
 
@@ -74,9 +74,9 @@ function update() {
   });
 }
 
-var i = 1;
+var i = 3;
 var whenReady = () => {
-  if (i < 5) {return false;}
+  if (i < 2) {return false;}
   update()
   setInterval(update, 60000);
   setInterval(updateAvatars, 600000);
