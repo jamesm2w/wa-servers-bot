@@ -50,11 +50,11 @@ exports.apicheck = function (onfinish) {
   getJSON(waoptions, function(status, data){
       
       let content = {
-        "us_01": ["down", data.us_01.population, data.us_01.name],
-        "eu_01": ["down", data.eu_01.population, data.eu_01.name],
-        "us_02": ["down", data.us_02.population, data.us_02.name],
-        "eu_02": ["down", data.eu_02.population, data.eu_02.name],
-        "us_03": ["down", data.us_03.population, data.us_03.name]
+        "us_01": ["down", "dead", data.us_01.name],
+        "eu_01": ["down", "dead", data.eu_01.name],
+        "us_02": ["down", "dead", data.us_02.name],
+        "eu_02": ["down", "dead", data.eu_02.name],
+        "us_03": ["down", "dead", data.us_03.name]
       }
       
       content = JSON.stringify(content);
