@@ -31,6 +31,10 @@ var updateBots = () => {
       client.user.setPresence({"game": {"name": "Down | " + toTitleCase(latestStatus[serverID][1]) + " Population"}, "status": "dnd"})
       .then(user => console.log("[INFO] [" + serverID +"] Set to Down, " + latestStatus[serverID][1]))
       .catch(err => console.log(err));
+    } else if (latestStatus[serverID][0] == "custom") {
+      client.user.setPresence({"game": {"name": toTitleCase(latestStatus[serverID][2]) + " | " + toTitleCase(latestStatus[serverID][1])}, "status": "dnd"})
+      .then(user => console.log("[INFO] [" + serverID +"] Set to "+latestStatus[serverID][2]+", " + latestStatus[serverID][1]))
+      .catch(err => console.log(err));
     }
   }
 }
@@ -38,16 +42,20 @@ var updateBots = () => {
 var updateAvatars = () => {
   for (let [serverID, client] of Object.entries(clients)) {
     console.log("[DEBUG] [" + serverID +"] is " + JSON.stringify(latestStatus[serverID]));
-    console.log("[DEBUG] Setting Avatars this time")
-    if (latestStatus[serverID][0] == "up") {
+    console.log("[DEBUG] Setting Avatars this time");
+    status = latestStatus[serverID][0]
+    if (status == "custom") {
+        status = latestStatus[serverID][2];
+    }
+    if (status == "up") {
       client.user.setAvatar("https://cdn.discordapp.com/attachments/449903141471649792/468025695398789120/WALogoBig.png")
       .then(user => console.log("[INFO] [" + serverID +"] Online Avatar set to " + user.avatarURL))
       .catch(err => console.log(err));
-    } else if (latestStatus[serverID][0] == "maintenance") {
+    } else if (status == "maintenance") {
       client.user.setAvatar("https://cdn.discordapp.com/attachments/449903141471649792/468025840748199946/WALogoBigOrange.png")
       .then(user => console.log("[INFO] [" + serverID +"] Maintenance Avatar set to " + user.avatarURL))
       .catch(err => console.log(err));
-    } else if (latestStatus[serverID][0] == "down") {
+    } else if (status == "down") {
       client.user.setAvatar("https://cdn.discordapp.com/attachments/449903141471649792/468025969765253120/WALogoBigRed.png")
       .then(user => console.log("[INFO] [" + serverID +"] Down Avatar set to " + user.avatarURL))
       .catch(err => console.log(err));
