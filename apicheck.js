@@ -67,7 +67,7 @@ exports.apicheck = function (onfinish) {
 exports.ptscheck = function (onfinish) {
   getJSON(ptsoptions, function (status, data) {
     //let content = [data.pts.status, data.pts.population, data.pts.name];
-    let content = ["custom", "Awaiting Update 28", "down"]
+    let content = ["custom", "Awaiting Update 29", "down"]
     //content = JSON.stringify(content);
     onfinish(content);
   });
