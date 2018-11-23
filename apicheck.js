@@ -16,8 +16,12 @@ var getJSON = function(options, onResult) {
             output += chunk;
         });
         res.on('end', function() {
+          try{
             var obj = JSON.parse(output);
             onResult(res.statusCode, obj);
+          } catch (ex) {
+            console.err()
+          }
         });
     });
     req.on('error', function(err) {
@@ -46,6 +50,7 @@ var ptsoptions = {
       'Content-Type': 'application/json'
   }
 }
+
 exports.apicheck = function (onfinish) {
   getJSON(waoptions, function(status, data){
       
