@@ -20,7 +20,12 @@ var getJSON = function(options, onResult) {
             var obj = JSON.parse(output);
             onResult(res.statusCode, obj);
           } catch (ex) {
-            console.err()
+            console.log(ex);
+            onResult(res.statusCode, {
+              us_pvp_01: {status: "custom", name: "down", population: "Status Page Errored"},
+              us_pve_01: {status: "custom", name: "down", population: "Status Page Errored"},
+              pts: {status: "custom", name: "down", population: "Status Page Errored"}
+            });
           }
         });
     });
